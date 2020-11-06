@@ -16,6 +16,7 @@ jobs:
             - install: go mod download
             - gofmt: (! gofmt -d -s . | grep '^')
             - install-golint: go get golang.org/x/lint/golint
+            - golint: golint ./...
             - test: make test COVERPROFILE=${SD_ARTIFACTS_DIR}/coverage.out
             - build: go build -a -o /dev/null
             - test-release: "curl -sL https://git.io/goreleaser | bash -s -- --snapshot"
